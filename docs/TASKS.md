@@ -121,7 +121,7 @@ There is no buffer. If an evening checkpoint is missed, apply ARCHITECTURE "Cut 
 
 ## Slice 3 — Matching and agent core (day 3)
 
-### T-203 Matching core `[ ]`
+### T-203 Matching core `[x]`
 - **Owner** A · **Size** M · **Depends** T-202a
 - **Read** Normalization, Matching, Enums and mappings
 - **Paths** `app/matching/`, `tests/unit/test_matching_*`
