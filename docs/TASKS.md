@@ -39,7 +39,7 @@ There is no buffer. If an evening checkpoint is missed, apply ARCHITECTURE "Cut 
 - **Do** Inbound test (judges → our server). (1) SSH by key only, password and root login disabled. (2) Firewall allows only 22, 80, 443. (3) Automatic security updates on. (4) A host name (cheap domain preferred) resolves to the VPS IP. (5) Caddy serves a test page with a valid certificate. (6) The page opens from two Iranian networks (mobile + fixed-line) without VPN. (7) An external port check shows 5432 closed.
 - **Done when** All seven checks pass; O-02 resolved.
 
-### G3 Tooling `[ ]`
+### G3 Tooling `[x]`
 - **Owner** A + B · **Size** S · **Depends** —
 - **Do** Repo with these docs; branch rule `t-<id>-<slug>`; PRs reviewed by the other person.
 
