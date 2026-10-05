@@ -1,0 +1,86 @@
+{
+  "note": "Synthetic persona (fictional) per docs/ACCEPTANCE.md > Fixtures > Persona: Sara. Test database only. Only values present in ACCEPTANCE.md are used; fields not specified there (e.g. institution name) are left null rather than invented, per the honesty rule (PRODUCT.md §5).",
+  "personas": {
+    "sara": {
+      "user_id": "fixture-user-sara",
+      "profile": {
+        "target_path": "frontend",
+        "full_name": "سارا رحیمی",
+        "city": "شیراز",
+        "relocate": false,
+        "seniority": "junior",
+        "years_experience": 0.5,
+        "remote_pref": "remote_or_hybrid",
+        "work_types": ["full_time", "internship"],
+        "salary_floor_toman": 15000000,
+        "resume_language": "fa",
+        "military_status": "not_applicable",
+        "links": [],
+        "free_text": "",
+        "privacy_ack_at": "2026-10-01T00:00:00Z"
+      },
+      "evidence": {
+        "skills": [
+          { "id": "fixture-sara-skill-html", "user_id": "fixture-user-sara", "source": "form", "confirmed": true, "created_at": "2026-10-01T00:00:00Z", "name_canonical": "HTML", "display_name": "HTML" },
+          { "id": "fixture-sara-skill-css", "user_id": "fixture-user-sara", "source": "form", "confirmed": true, "created_at": "2026-10-01T00:00:00Z", "name_canonical": "CSS", "display_name": "CSS" },
+          { "id": "fixture-sara-skill-js", "user_id": "fixture-user-sara", "source": "form", "confirmed": true, "created_at": "2026-10-01T00:00:00Z", "name_canonical": "JavaScript", "display_name": "JavaScript" },
+          { "id": "fixture-sara-skill-react", "user_id": "fixture-user-sara", "source": "form", "confirmed": true, "created_at": "2026-10-01T00:00:00Z", "name_canonical": "React", "display_name": "React" },
+          { "id": "fixture-sara-skill-git", "user_id": "fixture-user-sara", "source": "form", "confirmed": true, "created_at": "2026-10-01T00:00:00Z", "name_canonical": "Git", "display_name": "Git" }
+        ],
+        "projects": [
+          {
+            "id": "fixture-sara-project-bookshelf",
+            "user_id": "fixture-user-sara",
+            "source": "form",
+            "confirmed": true,
+            "created_at": "2026-10-01T00:00:00Z",
+            "title": "Bookshelf",
+            "description": "اپلیکیشن تک‌صفحه‌ای (SPA) با React برای کتابخانهٔ شخصی، با امکان جست‌وجو و فیلتر کردن کتاب‌ها.",
+            "technologies": ["React", "JavaScript", "CSS"],
+            "link": null
+          },
+          {
+            "id": "fixture-sara-project-weather",
+            "user_id": "fixture-user-sara",
+            "source": "form",
+            "confirmed": true,
+            "created_at": "2026-10-01T00:00:00Z",
+            "title": "Weather widget",
+            "description": "اپلیکیشن جاوااسکریپت خام (vanilla) که از یک API عمومی آب‌وهوا استفاده می‌کند.",
+            "technologies": ["JavaScript", "HTML", "CSS"],
+            "link": null
+          }
+        ],
+        "education": [
+          {
+            "id": "fixture-sara-edu-1",
+            "user_id": "fixture-user-sara",
+            "source": "form",
+            "confirmed": true,
+            "created_at": "2026-10-01T00:00:00Z",
+            "degree": "کارشناسی",
+            "field": "مهندسی کامپیوتر",
+            "institution": null,
+            "year": 2025
+          }
+        ],
+        "experiences": [
+          {
+            "id": "fixture-sara-exp-1",
+            "user_id": "fixture-user-sara",
+            "source": "form",
+            "confirmed": true,
+            "created_at": "2026-10-01T00:00:00Z",
+            "title": "کارآموز فرانت‌اند",
+            "organization": "استودیو نمونه",
+            "period_text": "۶ ماه، ۲۰۲۵",
+            "bullets": [
+              "ساخت ۴ لندینگ‌پیج با HTML و CSS",
+              "رفع باگ‌های چیدمان ریسپانسیو"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

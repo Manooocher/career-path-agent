@@ -71,7 +71,7 @@ There is no buffer. If an evening checkpoint is missed, apply ARCHITECTURE "Cut 
 - **Done when** OpenRouter calls with `models` lists and `require_parameters`; timeouts; one retry; Pydantic validation with one repair; usage rows with cost from the response; per-user and global caps; fault injection (refused in production). Mocked-transport tests for success, timeout, invalid JSON, cap reached.
 - **AC** AC-REL-006, AC-SEC-005, SR-03, SR-09
 
-### T-202a Test fixtures and taxonomy seed `[ ]`
+### T-202a Test fixtures and taxonomy seed `[x]`
 - **Owner** A · **Size** S · **Depends** —
 - **Read** Schemas (jobs), Normalization; ACCEPTANCE "Fixtures"
 - **Paths** `tests/fixtures/jobs_fixtures.json`, `data/taxonomy/skills.json`, `data/taxonomy/paths.json`

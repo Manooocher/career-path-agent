@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "paths": [
+    { "id": "frontend", "label_fa": "فرانت‌اند", "label_en": "Frontend" },
+    { "id": "backend", "label_fa": "بک‌اند", "label_en": "Backend" },
+    { "id": "fullstack", "label_fa": "فول‌استک", "label_en": "Full-stack" },
+    { "id": "mobile", "label_fa": "موبایل", "label_en": "Mobile" },
+    { "id": "devops", "label_fa": "دواپس / ابری", "label_en": "DevOps/Cloud" },
+    { "id": "data_ai", "label_fa": "داده و هوش مصنوعی", "label_en": "Data & AI/ML" }
+  ]
+}
