@@ -1,7 +1,7 @@
 """Ties filters + scoring together: ARCHITECTURE.md > Matching, display rules."""
 from __future__ import annotations
 
-from typing import Iterable
+from collections.abc import Iterable
 
 from .filters import apply_hard_filters
 from .scoring import score_listing

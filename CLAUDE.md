@@ -39,7 +39,37 @@ CareerPath («همراه شغلی»): a Persian-first, RTL web app for Quera Bui
 
 ## Commands
 
-TODO(T-101): install, run locally, run tests, lint, create migration, run ingestion, import snapshot, deploy.
+**Install (local venv, for editing/tests without Docker)**
+```
+python3 -m venv .venv && . .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+**Run locally (full stack: Caddy + app + PostgreSQL 16)**
+```
+cp .env.example .env   # then set SECRET_KEY (16+ chars) and POSTGRES_PASSWORD
+docker compose -f deploy/docker-compose.yml --env-file .env up -d --build
+curl http://localhost/healthz   # {"db": "ok", "llm_config": "..."}
+docker compose -f deploy/docker-compose.yml --env-file .env down
+```
+`--env-file .env` is required on every invocation (`up`, `down`, `logs`, `run`, ...) --
+Compose only reads `.env` automatically from the directory the compose file lives in,
+not the repo root, and without it `${POSTGRES_PASSWORD}` silently resolves to blank.
+
+**Tests** (stdlib-only `tests/unit/test_matching_*` and `test_fixtures_taxonomy.py`
+need nothing installed; `test_config.py` needs the venv above)
+```
+python3 -m unittest discover -s tests/unit   # or: pytest -q   (inside the venv)
+```
+
+**Lint**
+```
+ruff check app tests
+```
+
+**Create a migration / run ingestion / import snapshot / deploy to the VPS**
+TODO: T-102 (Alembic baseline), T-210/T-211 (ingestion + snapshot), T-105 (first VPS deploy)
+have not landed yet -- these commands don't exist until then.
 
 ## Definition of done
 

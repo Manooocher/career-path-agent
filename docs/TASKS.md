@@ -50,7 +50,7 @@ There is no buffer. If an evening checkpoint is missed, apply ARCHITECTURE "Cut 
 
 ## Slice 1 — Walking skeleton (day 1)
 
-### T-101 Scaffold and configuration `[ ]`
+### T-101 Scaffold and configuration `[x]`
 - **Owner** B · **Size** M · **Depends** G3
 - **Read** Stack decisions, Repo layout, Deployment
 - **Paths** `pyproject.toml`, `app/main.py`, `app/config.py`, `Dockerfile`, `deploy/docker-compose.yml`, `deploy/Caddyfile`

@@ -7,7 +7,7 @@ are tracked separately by the feedback graph (T-401), not here.
 """
 from __future__ import annotations
 
-from typing import Dict, List, TypedDict
+from typing import TypedDict
 
 from .types import ExcludedResult, MatchResult
 
@@ -30,21 +30,21 @@ class MovedEntry(TypedDict):
 
 
 class RunDiff(TypedDict):
-    left: List[LeftEntry]
-    joined: List[JoinedEntry]
-    moved: List[MovedEntry]
+    left: list[LeftEntry]
+    joined: list[JoinedEntry]
+    moved: list[MovedEntry]
 
 
 def diff_runs(
-    parent_results: List[MatchResult],
-    new_results: List[MatchResult],
-    new_excluded: List[ExcludedResult],
+    parent_results: list[MatchResult],
+    new_results: list[MatchResult],
+    new_excluded: list[ExcludedResult],
 ) -> RunDiff:
-    parent_by_id: Dict[str, MatchResult] = {r.job_id: r for r in parent_results}
-    new_by_id: Dict[str, MatchResult] = {r.job_id: r for r in new_results}
-    excluded_by_id: Dict[str, ExcludedResult] = {e.job_id: e for e in new_excluded}
+    parent_by_id: dict[str, MatchResult] = {r.job_id: r for r in parent_results}
+    new_by_id: dict[str, MatchResult] = {r.job_id: r for r in new_results}
+    excluded_by_id: dict[str, ExcludedResult] = {e.job_id: e for e in new_excluded}
 
-    left: List[LeftEntry] = []
+    left: list[LeftEntry] = []
     for job_id, old in parent_by_id.items():
         if job_id in new_by_id:
             continue
@@ -52,8 +52,8 @@ def diff_runs(
         reason_fa = excluded.reason_fa if excluded else "دیگر در میان نتایج نیست."
         left.append({"job_id": job_id, "old_rank": old.rank, "reason_fa": reason_fa})
 
-    joined: List[JoinedEntry] = []
-    moved: List[MovedEntry] = []
+    joined: list[JoinedEntry] = []
+    moved: list[MovedEntry] = []
     for job_id, new in new_by_id.items():
         old = parent_by_id.get(job_id)
         if old is None:

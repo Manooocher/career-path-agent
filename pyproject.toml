@@ -1,0 +1,48 @@
+[project]
+name = "careerpath"
+version = "0.1.0"
+description = "CareerPath (همراه شغلی) -- Quera BuildX Problem #2"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "jinja2>=3.1",
+  "pydantic>=2.7",
+  "pydantic-settings>=2.4",
+  "sqlalchemy>=2.0",
+  "alembic>=1.13",
+  "psycopg[binary]>=3.2",
+  "argon2-cffi>=23.1",
+  "httpx>=0.27",
+  "markdown-it-py>=3.0",
+  "nh3>=0.2",
+  "langgraph>=0.2",
+  "langgraph-checkpoint-postgres>=1.0",
+  "openai>=1.40",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2",
+  "ruff>=0.5",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 110
+
+[tool.ruff.lint]
+extend-select = ["I", "UP", "SIM", "RUF", "BLE", "PIE"]
+ignore = [
+  "C408",   # dict(...) call as a keyword literal reads fine in test fixtures
+  "SIM117", # nested `with` for mock.patch.dict + assertRaises is clearer separate
+  "RUF001", "RUF002", "RUF003",  # Persian-first app (CLAUDE.md): Persian string
+                                 # literals are not "ambiguous Latin look-alikes"
+]

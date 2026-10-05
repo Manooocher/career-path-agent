@@ -7,7 +7,6 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from typing import Dict, Optional, Tuple
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_SKILLS_TAXONOMY_PATH = REPO_ROOT / "data" / "taxonomy" / "skills.json"
@@ -46,7 +45,7 @@ def normalize_text(text: str, *, for_matching_key: bool = False) -> str:
     return text
 
 
-def normalize_city(text: Optional[str]) -> Optional[str]:
+def normalize_city(text: str | None) -> str | None:
     if text is None:
         return None
     normalized = normalize_text(text)
@@ -60,7 +59,7 @@ _RIAL_WORDS = ("ریال", "rial")
 _SMALL_FIGURE_IS_MILLIONS_THRESHOLD = 1000
 
 
-def normalize_money(text: Optional[str]) -> Optional[int]:
+def normalize_money(text: str | None) -> int | None:
     """«۲۵ میلیون», "25M", "25 تومن" -> 25,000,000 (Toman). «ریال» values
     are divided by 10. «توافقی» and friends -> None (unknown, D-17).
 
@@ -97,7 +96,7 @@ def normalize_money(text: Optional[str]) -> Optional[int]:
     if is_rial:
         value /= 10
 
-    return int(round(value))
+    return round(value)
 
 
 def _normalize_en_skill_key(text: str) -> str:
@@ -108,7 +107,7 @@ def _normalize_fa_skill_key(text: str) -> str:
     return normalize_text(text, for_matching_key=True).replace(" ", "")
 
 
-def load_skills_taxonomy(path: Optional[Path] = None) -> Dict[str, str]:
+def load_skills_taxonomy(path: Path | None = None) -> dict[str, str]:
     """Build an alias -> canonical skill lookup from data/taxonomy/skills.json.
     Canonical names map to themselves, which is what makes normalize_skill
     idempotent.
@@ -117,7 +116,7 @@ def load_skills_taxonomy(path: Optional[Path] = None) -> Dict[str, str]:
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
 
-    alias_to_canonical: Dict[str, str] = {}
+    alias_to_canonical: dict[str, str] = {}
     for skill in data["skills"]:
         canonical = skill["canonical"]
         alias_to_canonical[_normalize_en_skill_key(canonical)] = canonical
@@ -128,7 +127,7 @@ def load_skills_taxonomy(path: Optional[Path] = None) -> Dict[str, str]:
     return alias_to_canonical
 
 
-def normalize_skill(raw: str, alias_map: Dict[str, str]) -> Tuple[str, bool]:
+def normalize_skill(raw: str, alias_map: dict[str, str]) -> tuple[str, bool]:
     """Returns (canonical_or_original, is_known). Unknown skills are kept as
     entered and flagged, per ARCHITECTURE.md > Normalization > Skills.
     """

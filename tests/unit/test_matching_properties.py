@@ -10,11 +10,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app.matching.filters import apply_hard_filters  # noqa: E402
-from app.matching.normalize import normalize_text  # noqa: E402
-from app.matching.pipeline import run_match  # noqa: E402
-from app.matching.scoring import score_listing  # noqa: E402
-from app.matching.types import (  # noqa: E402
+from app.matching.filters import apply_hard_filters
+from app.matching.normalize import normalize_text
+from app.matching.pipeline import run_match
+from app.matching.scoring import score_listing
+from app.matching.types import (
     Arrangement,
     CareerPath,
     Listing,
@@ -72,7 +72,7 @@ SKILL_POOL = ["React", "JavaScript", "TypeScript", "CSS", "HTML", "Git", "Vue"]
 class TestBounds(unittest.TestCase):
     def test_score_always_in_0_100(self):
         for r_size, p_size, s_size, seniority, salary_min in itertools.product(
-            range(0, 4), range(0, 3), range(0, 4), list(Seniority), [None, 10_000_000, 50_000_000]
+            range(4), range(3), range(4), list(Seniority), [None, 10_000_000, 50_000_000]
         ):
             listing = make_listing(
                 required_skills=tuple(SKILL_POOL[:r_size]),

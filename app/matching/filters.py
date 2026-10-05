@@ -5,7 +5,7 @@ and is not implemented here.
 """
 from __future__ import annotations
 
-from typing import Iterable, List, Tuple
+from collections.abc import Iterable
 
 from .types import (
     Arrangement,
@@ -61,13 +61,13 @@ def _seniority_reason_fa(profile: Profile, listing: Listing) -> str:
 
 def apply_hard_filters(
     profile: Profile, context: SearchContext, listings: Iterable[Listing]
-) -> Tuple[List[Listing], List[ExcludedResult], int]:
+) -> tuple[list[Listing], list[ExcludedResult], int]:
     """Returns (passing_listings, excluded_results, other_path_count).
 
     H0 (path mismatch) is counted, not listed, per ARCHITECTURE.md > Matching.
     """
-    passing: List[Listing] = []
-    excluded: List[ExcludedResult] = []
+    passing: list[Listing] = []
+    excluded: list[ExcludedResult] = []
     other_path_count = 0
 
     for listing in listings:

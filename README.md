@@ -5,7 +5,7 @@ Persian-first job-search companion for software job seekers in Iran, built for Q
 | Item | Value |
 |---|---|
 | Live URL | TODO(T-105) |
-| Status | Planning v2 complete; build starts at gates G1–G4 |
+| Status | Building (day 1): G3 done; T-202a, T-203, T-101 done; G1/G2/G4 (human-gated) still open |
 | Hosting | Frankfurt VPS (Docker Compose + Caddy) |
 | LLM | OpenRouter, total budget $5 |
 | Team | 2 people: A = Agent & Data, B = Platform & Delivery |
@@ -26,7 +26,19 @@ Persian-first job-search companion for software job seekers in Iran, built for Q
 
 ## Quick start
 
-TODO(T-101): prerequisites, environment setup from `.env.example`, run, test.
+Prerequisites: Docker + Docker Compose. Python 3.12 only needed for local
+(non-Docker) editing/tests.
+
+```
+cp .env.example .env
+# edit .env: set SECRET_KEY (16+ chars) and POSTGRES_PASSWORD
+docker compose -f deploy/docker-compose.yml --env-file .env up -d --build
+curl http://localhost/healthz
+```
+
+See `CLAUDE.md` > "Commands" for the local-venv / test / lint commands.
+LLM features report `llm_config: not_configured` until gate G1 sets real
+OpenRouter model IDs and a key in `.env`.
 
 ## Stack
 

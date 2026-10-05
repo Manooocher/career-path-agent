@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from app.matching.normalize import (  # noqa: E402
+from app.matching.normalize import (
     load_skills_taxonomy,
     normalize_digits,
     normalize_money,

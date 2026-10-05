@@ -8,11 +8,10 @@ schemas used at the LLM/web boundary -- matching is a pure function of
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from enum import Enum
-from typing import FrozenSet, List, Optional, Tuple
+from enum import StrEnum
 
 
-class CareerPath(str, Enum):
+class CareerPath(StrEnum):
     FRONTEND = "frontend"
     BACKEND = "backend"
     FULLSTACK = "fullstack"
@@ -21,7 +20,7 @@ class CareerPath(str, Enum):
     DATA_AI = "data_ai"
 
 
-class Seniority(str, Enum):
+class Seniority(StrEnum):
     INTERN = "intern"
     JUNIOR = "junior"
     MID = "mid"
@@ -29,7 +28,7 @@ class Seniority(str, Enum):
 
 
 # Order matters: ARCHITECTURE.md "Enums and mappings" -> Seniority (ordered) intern < junior < mid < senior
-SENIORITY_ORDER: Tuple[Seniority, ...] = (
+SENIORITY_ORDER: tuple[Seniority, ...] = (
     Seniority.INTERN,
     Seniority.JUNIOR,
     Seniority.MID,
@@ -41,19 +40,19 @@ def seniority_level(s: Seniority) -> int:
     return SENIORITY_ORDER.index(s)
 
 
-class RemotePref(str, Enum):
+class RemotePref(StrEnum):
     REMOTE_ONLY = "remote_only"
     REMOTE_OR_HYBRID = "remote_or_hybrid"
     ANY = "any"
 
 
-class Arrangement(str, Enum):
+class Arrangement(StrEnum):
     REMOTE = "remote"
     HYBRID = "hybrid"
     ONSITE = "onsite"
 
 
-class WorkType(str, Enum):
+class WorkType(StrEnum):
     FULL_TIME = "full_time"
     PART_TIME = "part_time"
     INTERNSHIP = "internship"
@@ -64,24 +63,24 @@ class WorkType(str, Enum):
 class Listing:
     id: str
     path: CareerPath
-    city: Optional[str]
+    city: str | None
     arrangement: Arrangement
     work_type: WorkType
     seniority: Seniority
-    required_skills: Tuple[str, ...]
-    preferred_skills: Tuple[str, ...]
-    salary_min_toman: Optional[int]
-    salary_max_toman: Optional[int]
+    required_skills: tuple[str, ...]
+    preferred_skills: tuple[str, ...]
+    salary_min_toman: int | None
+    salary_max_toman: int | None
     active: bool = True
 
 
 @dataclass(frozen=True)
 class Profile:
     target_path: CareerPath
-    city: Optional[str]
+    city: str | None
     relocate: bool
     seniority: Seniority
-    confirmed_skills: FrozenSet[str]
+    confirmed_skills: frozenset[str]
 
 
 @dataclass
@@ -92,23 +91,23 @@ class SearchContext:
     """
 
     remote_pref: RemotePref
-    salary_floor_toman: Optional[int]
-    work_types: FrozenSet[WorkType]
-    max_seniority: Optional[Seniority] = None
-    hidden_job_ids: FrozenSet[str] = field(default_factory=frozenset)
-    emphasis_skills: FrozenSet[str] = field(default_factory=frozenset)
+    salary_floor_toman: int | None
+    work_types: frozenset[WorkType]
+    max_seniority: Seniority | None = None
+    hidden_job_ids: frozenset[str] = field(default_factory=frozenset)
+    emphasis_skills: frozenset[str] = field(default_factory=frozenset)
 
 
 @dataclass
 class MatchResult:
     job_id: str
     score: int
-    label: Optional[str]  # "strong" | "possible" | "weak" | None (not displayed)
-    matched: List[str]
-    gaps_required: List[str]
-    gaps_preferred: List[str]
-    considerations: List[str]
-    rank: Optional[int] = None
+    label: str | None  # "strong" | "possible" | "weak" | None (not displayed)
+    matched: list[str]
+    gaps_required: list[str]
+    gaps_preferred: list[str]
+    considerations: list[str]
+    rank: int | None = None
 
 
 @dataclass
@@ -120,6 +119,6 @@ class ExcludedResult:
 
 @dataclass
 class MatchRunResult:
-    results: List[MatchResult]
-    excluded: List[ExcludedResult]
+    results: list[MatchResult]
+    excluded: list[ExcludedResult]
     other_path_count: int

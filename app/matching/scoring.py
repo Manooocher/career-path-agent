@@ -2,9 +2,15 @@
 from __future__ import annotations
 
 import math
-from typing import Optional
 
-from .types import Arrangement, Listing, MatchResult, Profile, SearchContext, seniority_level
+from .types import (
+    Arrangement,
+    Listing,
+    MatchResult,
+    Profile,
+    SearchContext,
+    seniority_level,
+)
 
 STRONG_THRESHOLD = 75
 POSSIBLE_THRESHOLD = 50
@@ -90,7 +96,7 @@ def score_listing(profile: Profile, context: SearchContext, listing: Listing) ->
     )
     score = max(0, min(100, round_half_up(total)))
 
-    label: Optional[str]
+    label: str | None
     if score >= STRONG_THRESHOLD:
         label = "strong"
     elif score >= POSSIBLE_THRESHOLD:
