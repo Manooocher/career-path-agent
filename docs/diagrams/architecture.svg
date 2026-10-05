@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="1000" height="800" font-family="Inter, Vazirmatn, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L8,4 L0,8 z" fill="#475569"/>
+    </marker>
+    <style>
+      .t { font-size: 12px; fill: #0f172a; }
+      .tb { font-size: 12px; font-weight: 700; fill: #0f172a; }
+      .ts { font-size: 10.5px; fill: #334155; }
+      .h { font-size: 13px; font-weight: 700; fill: #0f172a; }
+      .tool { fill: #f8fafc; stroke: #334155; stroke-width: 1.2; }
+      .llm { fill: #e0ecff; stroke: #2563eb; stroke-width: 1.4; }
+      .wait { fill: #fff7ed; stroke: #d97706; stroke-width: 1.4; stroke-dasharray: 5 3; }
+      .dec { fill: #fef9c3; stroke: #a16207; stroke-width: 1.2; }
+      .ext { fill: #f1f5f9; stroke: #334155; stroke-width: 1.2; }
+      .ln { stroke: #475569; stroke-width: 1.3; fill: none; marker-end: url(#arr); }
+      .lnd { stroke: #d97706; stroke-width: 1.3; fill: none; stroke-dasharray: 5 3; marker-end: url(#arr); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="800" fill="#ffffff"/>
+  <text x="20" y="30" font-size="18" font-weight="700" fill="#0f172a">CareerPath — topology and agent graphs</text>
+  <text x="20" y="50" class="ts">One app container + PostgreSQL. Blue = LLM call, grey = deterministic tool, dashed amber = pause for the user (LangGraph interrupt), diamond = decision edge.</text>
+
+  <!-- Topology -->
+  <rect x="20" y="95" width="170" height="110" rx="8" class="ext"/>
+  <text x="105" y="122" text-anchor="middle" class="tb">Browser</text>
+  <text x="105" y="144" text-anchor="middle" class="ts">Jinja2 pages + HTMX</text>
+  <text x="105" y="162" text-anchor="middle" class="ts">Persian · RTL</text>
+  <text x="105" y="180" text-anchor="middle" class="ts">polls run status every 1.5 s</text>
+  <path d="M190,150 L238,150" class="ln"/>
+  <text x="214" y="142" text-anchor="middle" class="ts">HTTPS</text>
+  <text x="214" y="166" text-anchor="middle" class="ts">Caddy</text>
+
+  <rect x="240" y="75" width="500" height="175" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5"/>
+  <text x="255" y="96" class="tb">Frankfurt VPS · app container — FastAPI, one worker</text>
+  <rect x="255" y="108" width="150" height="56" rx="6" class="tool"/>
+  <text x="330" y="131" text-anchor="middle" class="t">Routes · Auth</text>
+  <text x="330" y="149" text-anchor="middle" class="ts">CSRF · sanitizer · ownership</text>
+  <rect x="420" y="108" width="150" height="56" rx="6" class="tool"/>
+  <text x="495" y="131" text-anchor="middle" class="t">Agent runner</text>
+  <text x="495" y="149" text-anchor="middle" class="ts">LangGraph · 4 graphs</text>
+  <rect x="585" y="108" width="140" height="56" rx="6" class="llm"/>
+  <text x="655" y="131" text-anchor="middle" class="t">LLM adapter</text>
+  <text x="655" y="149" text-anchor="middle" class="ts">tiers · budget · failover</text>
+  <rect x="255" y="178" width="150" height="56" rx="6" class="tool"/>
+  <text x="330" y="201" text-anchor="middle" class="t">Matching tools</text>
+  <text x="330" y="219" text-anchor="middle" class="ts">filter · score · diff · relax</text>
+  <rect x="420" y="178" width="150" height="56" rx="6" class="tool"/>
+  <text x="495" y="201" text-anchor="middle" class="t">Verifier</text>
+  <text x="495" y="219" text-anchor="middle" class="ts">claim checks V1–V4</text>
+  <rect x="585" y="178" width="140" height="56" rx="6" class="tool"/>
+  <text x="655" y="201" text-anchor="middle" class="t">Usage log + logs</text>
+  <text x="655" y="219" text-anchor="middle" class="ts">no prompt bodies</text>
+  <path d="M405,136 L418,136" class="ln"/>
+  <path d="M570,136 L583,136" class="ln"/>
+  <path d="M495,164 L495,176" class="ln"/>
+  <path d="M440,164 L380,176" class="ln"/>
+
+  <rect x="790" y="80" width="190" height="75" rx="8" class="ext"/>
+  <text x="885" y="104" text-anchor="middle" class="tb">PostgreSQL 16</text>
+  <text x="885" y="124" text-anchor="middle" class="ts">app tables + checkpoints</text>
+  <text x="885" y="141" text-anchor="middle" class="ts">internal only · off-VPS backups</text>
+  <rect x="790" y="170" width="190" height="75" rx="8" class="llm"/>
+  <text x="885" y="194" text-anchor="middle" class="tb">OpenRouter</text>
+  <text x="885" y="214" text-anchor="middle" class="ts">models[] fallback · $5 key limit</text>
+  <text x="885" y="231" text-anchor="middle" class="ts">OpenAI-compatible API</text>
+  <path d="M740,117 L788,117" class="ln"/>
+  <path d="M740,207 L788,207" class="ln"/>
+
+  <rect x="20" y="213" width="170" height="44" rx="6" class="tool"/>
+  <text x="105" y="231" text-anchor="middle" class="t">Ingestion (batch)</text>
+  <text x="105" y="247" text-anchor="middle" class="ts">scrape → enrich → snapshot</text>
+  <path d="M190,235 L238,235" class="ln"/>
+
+  <!-- Match graph -->
+  <text x="20" y="288" class="h">Match graph (kind = match)</text>
+  <rect x="20" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="66" y="326" text-anchor="middle" class="t">M1 load</text>
+  <rect x="122" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="168" y="326" text-anchor="middle" class="t">M2 normalize</text>
+  <rect x="224" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="270" y="318" text-anchor="middle" class="t">M3 filter</text>
+  <text x="270" y="334" text-anchor="middle" class="ts">H0 path · H1–H6</text>
+  <polygon points="365,298 407,322 365,346 323,322" class="dec"/>
+  <text x="365" y="326" text-anchor="middle" class="t">≥ 3?</text>
+  <rect x="420" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="466" y="318" text-anchor="middle" class="t">M5 score</text>
+  <text x="466" y="334" text-anchor="middle" class="ts">3 tiers · labels</text>
+  <rect x="522" y="300" width="92" height="44" rx="6" class="llm"/>
+  <text x="568" y="318" text-anchor="middle" class="t">M6 explain</text>
+  <text x="568" y="334" text-anchor="middle" class="ts">batched</text>
+  <rect x="624" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="670" y="318" text-anchor="middle" class="t">M7 ground</text>
+  <text x="670" y="334" text-anchor="middle" class="ts">→ template</text>
+  <rect x="726" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="772" y="318" text-anchor="middle" class="t">M8 diff</text>
+  <text x="772" y="334" text-anchor="middle" class="ts">vs parent run</text>
+  <rect x="828" y="300" width="92" height="44" rx="6" class="tool"/>
+  <text x="874" y="326" text-anchor="middle" class="t">M9 persist</text>
+  <path d="M112,322 L120,322" class="ln"/>
+  <path d="M214,322 L222,322" class="ln"/>
+  <path d="M316,322 L321,322" class="ln"/>
+  <path d="M407,322 L418,322" class="ln"/>
+  <text x="408" y="309" text-anchor="end" class="ts">yes</text>
+  <path d="M512,322 L520,322" class="ln"/>
+  <path d="M614,322 L622,322" class="ln"/>
+  <path d="M716,322 L724,322" class="ln"/>
+  <path d="M818,322 L826,322" class="ln"/>
+  <path d="M365,346 L365,370" class="ln"/>
+  <text x="373" y="362" class="ts">no</text>
+  <rect x="315" y="372" width="100" height="42" rx="6" class="wait"/>
+  <text x="365" y="390" text-anchor="middle" class="t">DP-1 (Could)</text>
+  <text x="365" y="406" text-anchor="middle" class="ts">interrupt</text>
+  <path d="M315,393 L270,393 L270,346" class="lnd"/>
+  <text x="262" y="412" text-anchor="end" class="ts">accept → filter again</text>
+  <path d="M415,393 L466,393 L466,346" class="lnd"/>
+  <text x="474" y="408" class="ts">keep → score</text>
+
+  <!-- Feedback graph -->
+  <text x="20" y="444" class="h">Feedback graph (kind = feedback)</text>
+  <path d="M75,465 L75,457 L465,457 L465,463" class="ln"/>
+  <text x="478" y="461" class="ts">quick reasons needing no question</text>
+  <rect x="20" y="465" width="110" height="44" rx="6" class="tool"/>
+  <text x="75" y="483" text-anchor="middle" class="t">F1 quick map</text>
+  <text x="75" y="499" text-anchor="middle" class="ts">no LLM</text>
+  <rect x="150" y="465" width="110" height="44" rx="6" class="llm"/>
+  <text x="205" y="483" text-anchor="middle" class="t">F2 parse text</text>
+  <text x="205" y="499" text-anchor="middle" class="ts">intents</text>
+  <polygon points="330,463 385,487 330,511 275,487" class="dec"/>
+  <text x="330" y="484" text-anchor="middle" class="ts">clear and</text>
+  <text x="330" y="497" text-anchor="middle" class="ts">allow-listed?</text>
+  <rect x="410" y="465" width="110" height="44" rx="6" class="tool"/>
+  <text x="465" y="483" text-anchor="middle" class="t">F4 apply</text>
+  <text x="465" y="499" text-anchor="middle" class="ts">search vs profile</text>
+  <rect x="540" y="465" width="140" height="44" rx="6" class="tool"/>
+  <text x="610" y="483" text-anchor="middle" class="t">F5 child match run</text>
+  <text x="610" y="499" text-anchor="middle" class="ts">parent_run_id → diff</text>
+  <path d="M130,487 L148,487" class="ln"/>
+    <path d="M260,487 L273,487" class="ln"/>
+  <path d="M385,487 L408,487" class="ln"/>
+  <text x="396" y="480" text-anchor="middle" class="ts">yes</text>
+  <path d="M520,487 L538,487" class="ln"/>
+  <path d="M330,511 L330,538" class="ln"/>
+  <text x="338" y="528" class="ts">no</text>
+  <rect x="268" y="540" width="124" height="42" rx="6" class="wait"/>
+  <text x="330" y="558" text-anchor="middle" class="t">DP-2 clarify</text>
+  <text x="330" y="574" text-anchor="middle" class="ts">interrupt · ≤ 2 rounds</text>
+  <path d="M268,561 L205,561 L205,511" class="lnd"/>
+  <text x="150" y="577" class="ts">answer → parse again</text>
+
+  <!-- Resume graph -->
+  <text x="20" y="615" class="h">Resume graph (kind = resume; revise re-enters at R5)</text>
+  <rect x="20" y="630" width="115" height="44" rx="6" class="tool"/>
+  <text x="77" y="648" text-anchor="middle" class="t">R1–R2 load</text>
+  <text x="77" y="664" text-anchor="middle" class="ts">gaps (≤ 3)</text>
+  <polygon points="195,628 235,652 195,676 155,652" class="dec"/>
+  <text x="195" y="656" text-anchor="middle" class="t">gaps?</text>
+  <rect x="330" y="630" width="110" height="44" rx="6" class="llm"/>
+  <text x="385" y="648" text-anchor="middle" class="t">R5 generate</text>
+  <text x="385" y="664" text-anchor="middle" class="ts">fa / en · refs</text>
+  <rect x="460" y="630" width="110" height="44" rx="6" class="tool"/>
+  <text x="515" y="648" text-anchor="middle" class="t">R6 DP-4 verify</text>
+  <text x="515" y="664" text-anchor="middle" class="ts">drop unsupported</text>
+  <polygon points="640,626 698,652 640,678 582,652" class="dec"/>
+  <text x="640" y="649" text-anchor="middle" class="ts">removed and</text>
+  <text x="640" y="662" text-anchor="middle" class="ts">rounds &lt; 2?</text>
+  <rect x="728" y="630" width="110" height="44" rx="6" class="tool"/>
+  <text x="783" y="648" text-anchor="middle" class="t">R8 finalize</text>
+  <text x="783" y="664" text-anchor="middle" class="ts">sanitize · version</text>
+  <rect x="858" y="630" width="122" height="44" rx="6" class="wait"/>
+  <text x="919" y="648" text-anchor="middle" class="t">User revision</text>
+  <text x="919" y="664" text-anchor="middle" class="ts">≤ 2 per draft</text>
+  <path d="M135,652 L153,652" class="ln"/>
+  <path d="M235,652 L328,652" class="ln"/>
+  <text x="282" y="645" text-anchor="middle" class="ts">no</text>
+  <path d="M440,652 L458,652" class="ln"/>
+  <path d="M570,652 L580,652" class="ln"/>
+  <path d="M698,652 L726,652" class="ln"/>
+  <text x="712" y="645" text-anchor="middle" class="ts">no</text>
+  <path d="M838,652 L856,652" class="ln"/>
+  <path d="M195,676 L195,698" class="ln"/>
+  <text x="203" y="692" class="ts">yes</text>
+  <rect x="135" y="700" width="120" height="42" rx="6" class="wait"/>
+  <text x="195" y="718" text-anchor="middle" class="t">DP-3 ask ≤ 3</text>
+  <text x="195" y="734" text-anchor="middle" class="ts">interrupt → R4 absorb</text>
+  <path d="M255,721 L360,721 L360,676" class="lnd"/>
+  <path d="M640,678 L640,740 L410,740 L410,676" class="ln"/>
+  <text x="525" y="734" text-anchor="middle" class="ts">yes → rewrite affected claims</text>
+  <path d="M919,674 L919,760 L385,760 L385,676" class="lnd"/>
+  <text x="650" y="755" text-anchor="middle" class="ts">revision instruction (refused if it asks to fabricate)</text>
+
+  <!-- Legend -->
+  <rect x="20" y="772" width="14" height="12" class="tool"/><text x="40" y="782" class="ts">deterministic tool</text>
+  <rect x="150" y="772" width="14" height="12" class="llm"/><text x="170" y="782" class="ts">LLM call</text>
+  <rect x="245" y="772" width="14" height="12" class="wait"/><text x="265" y="782" class="ts">pause for the user (interrupt)</text>
+  <polygon points="452,771 460,778 452,785 444,778" class="dec"/><text x="468" y="782" class="ts">decision edge</text>
+  <text x="980" y="782" text-anchor="end" class="ts">See ARCHITECTURE.md → Agent design</text>
+</svg>
